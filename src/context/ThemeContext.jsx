@@ -1,15 +1,15 @@
-import { createContext, useContext } from 'react';
+// import { createContext, useContext } from 'react';
 
-const ThemeContext = createContext();
+// const ThemeContext = createContext();
 
-export function ThemeProvider({ children }) {
-  return (
-    <ThemeContext.Provider value={{ theme: 'light', toggleTheme: () => {} }}>
-      {children}
-    </ThemeContext.Provider>
-  );
-}
+// export function ThemeProvider({ children }) {
+//   return (
+//     <ThemeContext.Provider value={{ theme: 'light', toggleTheme: () => {} }}>
+//       {children}
+//     </ThemeContext.Provider>
+//   );
+// }
 
-export function useTheme() {
-  return useContext(ThemeContext);
-}
+// export function useTheme() {
+//   return useContext(ThemeContext);
+// }
