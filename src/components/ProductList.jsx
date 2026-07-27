@@ -3,7 +3,7 @@ import ProductRow from "./ProductRow";
 
 const ProductList = ({ title, products }) => {
   return (
-    <div className="top-product h-100 bg-white rounded-[32px] ">
+    <div className="top-product h-[600px] bg-white rounded-[32px] flex flex-col ">
 
       {/* Header */}
 
@@ -27,7 +27,7 @@ const ProductList = ({ title, products }) => {
 
       {/* Products */}
 
-      <div className="space-y-5 flex flex-col gap-3">
+      <div className="flex-1 hide-scrollbar overflow-y-auto flex flex-col gap-3">
 
         {products.map(product=>(
           <ProductRow

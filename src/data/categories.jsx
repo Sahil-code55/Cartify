@@ -1,13 +1,9 @@
-// export const categories = [
-//   { id: 1, name: "Electronics" },
-//   { id: 2, name: "Apparel" },
-//   { id: 3, name: "Home & Kitchen" },
-//   { id: 4, name: "Books" }
-// ];
 import { FaLaptop, FaHome } from "react-icons/fa";
 import { MdChair } from "react-icons/md";
 import { GiClothes, GiSoccerBall } from "react-icons/gi";
-
+import { BiFemale } from "react-icons/bi";
+import { FaMale } from "react-icons/fa";
+import { RiJewelryFill } from "react-icons/ri";
 export const categories = [
   {
     id: 1,
@@ -17,26 +13,21 @@ export const categories = [
   },
   {
     id: 2,
-    title: "Clothing",
+    title: "Female Clothing",
     items: 2,
-    icon: <GiClothes />,
+    icon: <BiFemale />,
   },
   {
     id: 3,
-    title: "Furniture",
+    title: "Male Clothing",
     items: 3,
-    icon: <MdChair />,
+    icon: < FaMale/>,
   },
   {
     id: 4,
-    title: "Home",
+    title: "Jewelrys",
     items: 14,
-    icon: <FaHome />,
-  },
-  {
-    id: 5,
-    title: "Sports",
-    items: 8,
-    icon: <GiSoccerBall />,
-  },
+    icon: <RiJewelryFill />,
+  }
+
 ];

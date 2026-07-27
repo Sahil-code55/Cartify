@@ -10,12 +10,12 @@ const ProductRow = ({ product }) => {
         <img
           src={product.image}
           alt={product.title}
-          className="w-16 h-16 rounded-lg object-cover"
+          className="w-16 h-16 object-contain flex-shrink-0"
         />
 
         <div>
 
-          <h3 className="font-semibold">
+          <h3 className="font-semibold line-clamp-2 leading-6">
             {product.title}
           </h3>
 

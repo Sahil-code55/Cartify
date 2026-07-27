@@ -1,170 +1,265 @@
-// export default function Login({ setCurrentPage }) {
-//   return (
-//     <div className="min-h-[calc(100vh-140px)] w-full grid grid-cols-1 md:grid-cols-2 rounded-[var(--radius-lg)] border border-[var(--border-color)] overflow-hidden bg-[var(--bg-surface)] shadow-md my-4">
-//       {/* Left Column: Branding, Hero Content, Stats */}
-//       <div className="flex flex-col justify-between p-8 md:p-12 bg-gradient-to-br from-[var(--bg-app)] to-[rgba(37,99,235,0.04)] border-r border-[var(--border-color)]">
-//         {/* Top Logo */}
-//         <div className="flex items-center gap-2 cursor-pointer" onClick={() => setCurrentPage('home')}>
-//           <div className="flex items-center justify-center w-[36px] h-[36px] rounded-full bg-[var(--primary-gradient)] text-white shadow-sm">
-//             <svg 
-//               width="18" 
-//               height="18" 
-//               viewBox="0 0 24 24" 
-//               fill="none" 
-//               stroke="currentColor" 
-//               strokeWidth="2.5" 
-//               strokeLinecap="round" 
-//               strokeLinejoin="round"
-//             >
-//               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-//             </svg>
-//           </div>
-//           <span className="text-xl font-semibold text-[var(--text-main)] tracking-[-0.5px]">
-//             Cart<strong className="font-extrabold bg-[var(--primary-gradient)] bg-clip-text text-transparent">ify</strong>
-//           </span>
-//         </div>
 
-//         {/* Middle Hero Message */}
-//         <div className="my-8 md:my-0">
-//           <div className="text-[0.75rem] font-bold tracking-[0.15em] text-[var(--primary)] uppercase mb-3">
-//             Welcome Back
-//           </div>
-//           <h1 className="text-4xl md:text-5xl font-extrabold tracking-[-1px] text-[var(--text-main)] leading-tight mb-4">
-//             Shop the future.<br />
-//             <span className="bg-[var(--primary-gradient)] bg-clip-text text-transparent">Today.</span>
-//           </h1>
-//           <p className="text-[var(--text-muted)] text-[0.95rem] max-w-sm leading-relaxed">
-//             Thousands of products, lightning-fast delivery, and prices that make your wallet happy.
-//           </p>
-//         </div>
+import React, { useContext } from 'react'
+import { Package, Users, Star, Truck,  } from 'lucide-react';
+import { MdArrowForward } from "react-icons/md";
+import { checkAuthContext } from '../context/AuthContext';
+// import { useForm } from 'react-hook-form';
+const Login = () => {
+     // Metrics Data
+  const metrics = [
+    { id: 1, value: '20K+', label: 'Products', icon: <Package className="w-5 h-5 text-primary" /> },
+    { id: 2, value: '50K+', label: 'Users', icon: <Users className="w-5 h-5 text-primary" /> },
+    { id: 3, value: '4.9', label: 'Rating', icon: <Star className="w-5 h-5 text-primary fill-primary" /> },
+  ];
 
-//         {/* Bottom Stats */}
-//         <div className="grid grid-cols-3 gap-3">
-//           <div className="bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-[var(--radius-sm)] p-3 text-center transition-all duration-300 hover:shadow-sm">
-//             <div className="text-[1.2rem] font-bold text-[var(--primary)]">20K+</div>
-//             <div className="text-[0.7rem] font-semibold text-[var(--text-muted)] mt-0.5 uppercase tracking-wider">Products</div>
-//           </div>
-//           <div className="bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-[var(--radius-sm)] p-3 text-center transition-all duration-300 hover:shadow-sm">
-//             <div className="text-[1.2rem] font-bold text-[var(--primary)]">50K+</div>
-//             <div className="text-[0.7rem] font-semibold text-[var(--text-muted)] mt-0.5 uppercase tracking-wider">Users</div>
-//           </div>
-//           <div className="bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-[var(--radius-sm)] p-3 text-center transition-all duration-300 hover:shadow-sm flex flex-col justify-center items-center">
-//             <div className="flex items-center gap-0.5 text-[1.2rem] font-bold text-[var(--primary)]">
-//               4.9
-//               <svg 
-//                 className="w-4 h-4 text-amber-500 fill-amber-500 pb-0.5" 
-//                 viewBox="0 0 24 24" 
-//                 stroke="currentColor" 
-//                 strokeWidth="1"
-//               >
-//                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-//               </svg>
-//             </div>
-//             <div className="text-[0.7rem] font-semibold text-[var(--text-muted)] mt-0.5 uppercase tracking-wider">Rating</div>
-//           </div>
-//         </div>
-//       </div>
+//   let {user ,SetUser } = useContext(checkAuthContext);
 
-//       {/* Right Column: Sign-in Form */}
-//       <div className="flex items-center justify-center p-8 md:p-12 bg-[var(--bg-surface)]">
-//         <div className="w-full max-w-[360px]">
-//           <div className="mb-6 text-left">
-//             <h2 className="text-2xl font-bold tracking-[-0.5px] text-[var(--text-main)] mb-1">Sign in</h2>
-//             <p className="text-[0.9rem] text-[var(--text-muted)]">Enter your credentials to continue</p>
-//           </div>
+//   let {register , handleSubmit ,reset ,formState:{errors}} =useForm({mode:"onChange"});
 
-//           <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
-//             {/* Email Address Input */}
-//             <div className="relative w-full flex items-center">
-//               <span className="absolute left-[1.15rem] flex items-center justify-center text-[var(--text-muted)] pointer-events-none">
-//                 <svg 
-//                   width="18" 
-//                   height="18" 
-//                   viewBox="0 0 24 24" 
-//                   fill="none" 
-//                   stroke="currentColor" 
-//                   strokeWidth="2" 
-//                   strokeLinecap="round" 
-//                   strokeLinejoin="round"
-//                 >
-//                   <rect x="3" y="4" width="18" height="16" rx="2"/>
-//                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-//                 </svg>
-//               </span>
-//               <input 
-//                 type="email" 
-//                 className="w-full py-[0.85rem] pr-[1.15rem] pl-[2.85rem] text-[0.95rem] rounded-[var(--radius-sm)] border border-[var(--border-color)] bg-[var(--bg-app)] text-[var(--text-main)] transition-all duration-[var(--transition-fast)] placeholder:text-[#94A3B8] placeholder:opacity-80 focus:outline-none focus:border-[var(--primary)] focus:bg-[var(--bg-surface)] focus:ring-[4px] focus:ring-[rgba(37,99,235,0.12)]" 
-//                 placeholder="Email address" 
-//                 required 
-//               />
-//             </div>
+  let formSubmit =(data)=>{
+    const logUser = {
+        id: Date.now(),
+        ...data
+    }
+    console.log(data);
+  }
+   
+//     let arr =[...user , logUser]
+//     SetUser(arr)
+//     reset();
+//   }
 
-//             {/* Password Input */}
-//             <div className="relative w-full flex items-center">
-//               <span className="absolute left-[1.15rem] flex items-center justify-center text-[var(--text-muted)] pointer-events-none">
-//                 <svg 
-//                   width="18" 
-//                   height="18" 
-//                   viewBox="0 0 24 24" 
-//                   fill="none" 
-//                   stroke="currentColor" 
-//                   strokeWidth="2" 
-//                   strokeLinecap="round" 
-//                   strokeLinejoin="round"
-//                 >
-//                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-//                   <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-//                 </svg>
-//               </span>
-//               <input 
-//                 type="password" 
-//                 className="w-full py-[0.85rem] pr-[2.85rem] pl-[2.85rem] text-[0.95rem] rounded-[var(--radius-sm)] border border-[var(--border-color)] bg-[var(--bg-app)] text-[var(--text-main)] transition-all duration-[var(--transition-fast)] placeholder:text-[#94A3B8] placeholder:opacity-80 focus:outline-none focus:border-[var(--primary)] focus:bg-[var(--bg-surface)] focus:ring-[4px] focus:ring-[rgba(37,99,235,0.12)]" 
-//                 placeholder="Password" 
-//                 required 
-//               />
-//               <span className="absolute right-[1.15rem] flex items-center justify-center text-[var(--text-muted)] cursor-pointer transition-colors duration-[var(--transition-fast)] hover:text-[var(--text-main)]">
-//                 <svg 
-//                   width="18" 
-//                   height="18" 
-//                   viewBox="0 0 24 24" 
-//                   fill="none" 
-//                   stroke="currentColor" 
-//                   strokeWidth="2" 
-//                   strokeLinecap="round" 
-//                   strokeLinejoin="round"
-//                 >
-//                   <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
-//                   <circle cx="12" cy="12" r="3"/>
-//                 </svg>
-//               </span>
-//             </div>
+//  let {register,handleSubmit,reset,formState:{errors}}=useForm({
+//     mode:"onChange",
+//   defaultValues:updateUser,
 
-//             {/* Submit Button */}
-//             <button type="submit" className="group w-full py-[0.9rem] mt-2 bg-[var(--primary-gradient)] text-[var(--text-inverse)] border-none rounded-[var(--radius-sm)] font-semibold text-[0.95rem] cursor-pointer shadow-[var(--shadow-primary)] flex items-center justify-center gap-2 transition-all duration-[var(--transition-fast)] hover:translate-y-[-2px] hover:shadow-[0_12px_20px_-6px_rgba(37,99,235,0.4)] active:translate-y-0">
-//               Sign in
-//               <svg 
-//                 width="18" 
-//                 height="18" 
-//                 viewBox="0 0 24 24" 
-//                 fill="none" 
-//                 stroke="currentColor" 
-//                 strokeWidth="2.5" 
-//                 strokeLinecap="round" 
-//                 strokeLinejoin="round"
-//                 className="transition-transform duration-[var(--transition-fast)] group-hover:translate-x-[3px]"
-//               >
-//                 <line x1="5" y1="12" x2="19" y2="12"/>
-//                 <polyline points="12 5 19 12 12 19"/>
-//               </svg>
-//             </button>
-//           </form>
+//  });
 
-//           {/* Footer Link */}
-//           <p className="text-center text-[0.9rem] text-[var(--text-muted)] mt-6">
-//             Don't have an account? <span className="text-[var(--primary)] font-semibold cursor-pointer hover:underline" onClick={() => setCurrentPage('register')}>Create one</span>
-//           </p>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+//   console.log(errors);
+  
+   
+//     let formSubmit =(data)=>{
+//       const newUser ={
+//         id : Date.now(),
+//         ...data,
+//       }
+//     if(updateUser){
+//      setUser((prev)=>{
+//       return prev.map((val)=>{
+//          return val.id === updateUser.id ? {...newUser}: val;
+        
+//       })
+//      })
+//     }
+//       else{
+//       let arr = [...user ,newUser]
+//       setUser(arr)
+//       localStorage.setItem("users",JSON.stringify(arr));
+//     }
+//     reset();
+//     setToggle((prev)=>!prev)
+//     }
+
+
+
+
+
+
+//   let {user , setUser } = useContext(checkAuthContext);
+
+  return (
+
+<div className= "grid grid-cols-2 h-screen w-screen bg-white gap-[0.8px] overflow-hidden ">
+
+  {/* Left side  */}
+  <div 
+        style={{paddingTop:"2.5rem",paddingLeft:"2.5rem"}}
+        className="  bg-[#191919]">
+
+    {/* header logo */}
+            <div  className="navbar-logo flex items-center cursor-pointer justify-self-start">
+          <svg className="h-8 w-16" width="240" height="160" viewBox="0 0 240 165" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cartGradient" x1="0" y1="0" x2="240" y2="160" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+
+  {/* Speed Line 1 (Middle Left) --> */}
+  <path d="M 15 50 H 85" stroke="url(#cartGradient)" stroke-width="16" stroke-linecap="round" />
+
+  {/* <!-- Speed Line 2 (Bottom Left) --> */}
+  <path d="M 40 80 H 115" stroke="url(#cartGradient)" stroke-width="16" stroke-linecap="round" />
+
+  {/* <!-- Main Cart Basket and Top Tail --> */}
+  <path d="M 55 20 
+           H 105 
+           Q 115 20 115 35 
+           Q 115 50 130 50 
+           H 210 
+           C 225 50 230 60 226 73 
+           L 204 113 
+           C 199 123 190 130 178 130 
+           H 85 
+           C 74 130 65 121 65 110" 
+        stroke="url(#cartGradient)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+
+
+  {/* <!-- Wheels --> */}
+  <circle cx="105" cy="151" r="13" fill="url(#cartGradient)" />
+  <circle cx="170" cy="151" r="13" fill="url(#cartGradient)" />
+          </svg>
+             <h1 className="tracking-normal text-3xl text-white font-medium tracking-wide">Cart<span >ify</span></h1>
+              </div>
+
+
+    {/* Middle Content */}
+            <div
+            style={{marginTop:"7rem",marginLeft:"1.25rem"}}
+             className="login-left-middle flex flex-col items-start   justify-self-start gap-5">
+            <h2 className="login-left-middle-h2 text-md font-semibold text-white font-sans">WELCOME BACK</h2>
+            <h3   className="text-5xl text-white">Shop the future. <br />
+             <span style={{marginTop:"0.64rem"}} className="login-left-middle-h2 text-5xl font-sans">Today.</span>
+             </h3>
+            <p className="text-gray-500">Thousands of products, lightning-fast delivery, and <br /> prices that make your wallet happy.</p>
+            
+
+            </div>
+
+     {/* Bottom-section */}
+             <div 
+          style={{marginTop:"4rem",marginRight:"1.5rem"}}
+          className="grid grid-cols-2 md:grid-cols-3 gap-3 "
+        >
+          {metrics.map((metric) => (
+            <div
+              key={metric.id}
+              style={{padding:"1.5rem"}}
+              className="bg-bg-surface border border-gray-500 rounded-3xl  flex flex-col items-center text-center shadow-sm transition-all duration-300"
+            >
+              <div style={{marginBottom:"0.25rem"}} className=" bg-primary/5 rounded-radius-sm text-blue-700 ">
+                {metric.icon}
+              </div>
+              <span style={{marginBottom:"0.10rem"}} className="text-md font-semibold text-gray-200 tracking-tight ">
+                {metric.value}
+              </span>
+              <span className="text-sm font-medium text-gray-200">
+                {metric.label}
+              </span>
+            </div>
+          ))}
+        </div>
+
+  </div>
+
+        {/* Right side  */}
+  <div className=" flex items-center justify-center bg-[#0D0D0D]">
+
+     
+    {/* <form 
+      onSubmit={handleSubmit(formSubmit)}
+      className=" w-100 rounded-xl flex flex-col items-start justify-start text-start gap-4 bg-black border-3 border-amber-100 py-5 px-3" >
+
+
+    <input
+    {...register("name" ,{
+      required : "name is required"
+    })}
+
+     className= "p-2  text-white border-1 border-amber-100 w-full outline-0 rounded-2xl " 
+     type="text"
+     placeholder=" Enter  name" 
+     />
+    { errors.name && <p className="text-red-700 text-start text-md">{errors.name.message}</p>}
+
+    <input
+    {...register("email"  ,{
+      required : "email is required",
+      pattern:{
+        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        message:"please enter valid email"
+      }
+    })}
+
+     className= "p-2  text-white border-1 border-amber-100 w-full outline-0 rounded-2xl " 
+     type="email"
+      placeholder=" Enter Email" 
+      />
+    {   errors.email && < p className="text-red-700 text-start text-md">{errors.email.message}</p>}
+
+    <input
+    {...register("mobile" ,{
+      required : "name is required",
+      minLength:{
+        value: 10,
+        message:"minimum 10 digit required"
+      },
+        maxLength:{
+        value: 10,
+        message:"maximum 10 digit required"
+      }
+    })}
+
+     className= "p-2  text-white border-1 border-amber-100 w-full outline-0 rounded-2xl " 
+     type="number"
+      placeholder=" Enter Mobile number"
+       />
+      {  errors.mobile && <p className="text-red-700 text-start text-md">{errors.mobile.message}</p>}
+
+    <input
+    {...register("Image" ,{
+      required : "name is required"
+    })}
+
+     className= "p-2 text-white  border-1 border-amber-100 w-full outline-0 rounded-2xl "
+      type="url" 
+      placeholder=" Enter Image Url"
+       />
+     {  errors.Image &&  <p className="text-red-700 text-start text-md">{errors.Image.message}</p>}  
+
+    <button 
+    type="submit"
+     className=" bg-blue-500 rounded-4xl py-2 w-full text-white"
+     >Add User</button>
+      </form> */}
+
+
+   <form 
+   style={{paddingTop:"0.98rem",paddingBottom:"0.98rem",paddingLeft:"1.5rem",paddingRight:"1.5rem"}}
+   className="h-90 w-110 rounded-3xl flex flex-col gap-7 border-2 border-[#1D1D1D]  bg-[#111111]" >
+
+    {/* top text */}
+    <div className="top">
+      
+    <h1 className="text-3xl text-white">Sign in</h1>
+    <p style={{marginTop:"0.25rem"}} className="text-gray-700">Enter your credentials to continue</p>
+    </div>
+
+   {/* middle form */}
+   <div  className=" flex flex-col gap-4 ">
+
+    <input
+    style={{paddingLeft:"1rem"}}
+    className="bg-[#1D1D1D] h-12 w-full text-gray-400 rounded-xl outline-0 border-0 hover:border-1 border-blue-400"
+     type="email" placeholder="Email address" />
+
+    <input
+      style={{paddingLeft:"1rem"}}
+       className="bg-[#1D1D1D] h-12 w-full text-gray-400 rounded-xl  outline-0 border-0 hover:border-1 border-blue-400"
+     type="password" placeholder="password" />
+   </div>
+
+   <button  className="login-btn flex items-center justify-center gap-2 w-full h-12 text-white text-xl  rounded-2xl transition-transform duration-200 ease-linear active:-translate-y-[-2px] ">Sign in <MdArrowForward/> </button>
+
+   <p className="text-gray-500 text-center">Don't have an account? <span className="login-left-middle-h2 ">Create one</span></p>
+   </form>
+
+
+  </div>
+      
+</div>
+  )
+}
+
+export default Login

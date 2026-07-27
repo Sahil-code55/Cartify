@@ -58,19 +58,21 @@
 // }
 
 
-import React from 'react'
+import React, { useContext } from 'react'
 import ShopHeader from '../components/ShopHeader';
 import ShopCard  from "../components/ShopCard"
 import ShopProductFilter from '../components/ShopProductFilter';
 import ShopProductGrid from '../components/ShopProductgrid';
-import { products } from '../data/products';
+import { ShopProductContext } from '../context/ProductContext';
+// import { products } from '../data/products';
 
 const Shop = () => {
+  let {shopProductData} = useContext(ShopProductContext);
   return (
     <div className="page shop-page min-h-screen overflow-hidden  bg-[#111]  bg-[length:40px_40px]
     bg-[image:linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)]" >
       
-      <ShopHeader totalProducts={products.length}/>
+      <ShopHeader totalProducts={shopProductData.length}/>
       <ShopProductFilter/>
       <ShopProductGrid/>
       <ShopCard/>

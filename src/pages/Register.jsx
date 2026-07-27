@@ -179,3 +179,121 @@
 //     </div>
 //   );
 // }
+
+
+import React from 'react'
+import { IoPersonOutline } from "react-icons/io5";
+import { IoMailOutline } from "react-icons/io5";
+import { IoLockClosedOutline } from "react-icons/io5";
+import { MdArrowForward } from "react-icons/md";
+
+const Register = () => {
+  return (
+    <div className=" h-screen flex flex-col gap-3 items-center justify-center bg-[#0D0D0D]">
+     
+     {/* logo */}
+       <div  className="navbar-logo flex items-center cursor-pointer justify-self-start" >
+     <svg className="h-8 w-16" width="240" height="160" viewBox="0 0 240 165" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cartGradient" x1="0" y1="0" x2="240" y2="160" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+
+  {/* Speed Line 1 (Middle Left) --> */}
+  <path d="M 15 50 H 85" stroke="url(#cartGradient)" stroke-width="16" stroke-linecap="round" />
+
+  {/* <!-- Speed Line 2 (Bottom Left) --> */}
+  <path d="M 40 80 H 115" stroke="url(#cartGradient)" stroke-width="16" stroke-linecap="round" />
+
+  {/* <!-- Main Cart Basket and Top Tail --> */}
+  <path d="M 55 20 
+           H 105 
+           Q 115 20 115 35 
+           Q 115 50 130 50 
+           H 210 
+           C 225 50 230 60 226 73 
+           L 204 113 
+           C 199 123 190 130 178 130 
+           H 85 
+           C 74 130 65 121 65 110" 
+        stroke="url(#cartGradient)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+
+
+  {/* <!-- Wheels --> */}
+  <circle cx="105" cy="151" r="13" fill="url(#cartGradient)" />
+  <circle cx="170" cy="151" r="13" fill="url(#cartGradient)" />
+     </svg>
+     <h1 className="tracking-normal text-3xl text-white font-medium tracking-wide">Cart<span >ify</span></h1>
+      </div>
+     
+     <form
+      style={{paddingTop:"0.98rem",paddingBottom:"0.98rem",paddingLeft:"1.5rem",paddingRight:"1.5rem"}}
+   className=" w-110 rounded-3xl flex flex-col gap-4 border-2 border-[#1D1D1D]  bg-[#111111]"  >
+
+    <div>
+        <h1 className="text-3xl text-white">Create account</h1>
+        <p className="text-gray-500">Join Cartify and start shopping</p>
+    </div>
+
+    {/* form input area */}
+
+            {/* Full Name Input */}
+        <div className="relative flex items-center">
+          <IoPersonOutline className="absolute left-4 text-gray-500 text-xl" />
+          <input 
+            type="text" 
+            placeholder="Full name" 
+            style={{paddingTop:"0.75rem",paddingBottom:"0.75rem",paddingLeft:"3rem",paddingRight:"1rem"}}
+            className="w-full bg-zinc-800 text-white  border-[#1D1D1D]    rounded-2xl outline-0 border-0 hover:border-1 border-blue-400 placeholder-gray-500"
+          />
+        </div>
+     
+             {/* Email Input */}
+        <div className="relative flex items-center">
+          <IoMailOutline className="absolute left-4 text-gray-500 text-xl" />
+          <input 
+            type="email" 
+            placeholder="Email address" 
+          style={{paddingTop:"0.75rem",paddingBottom:"0.75rem",paddingLeft:"3rem",paddingRight:"1rem"}}
+            className="w-full bg-zinc-800 text-white   rounded-2xl outline-0 border-0 hover:border-1 border-blue-400 placeholder-gray-500"
+          />
+        </div>
+
+           {/* Password Input */}
+        <div className="relative flex items-center">
+          <IoLockClosedOutline className="absolute left-4 text-gray-500 text-xl" />
+          <input 
+            type="password" 
+            placeholder="Password (min 6 chars)" 
+          style={{paddingTop:"0.75rem",paddingBottom:"0.75rem",paddingLeft:"3rem",paddingRight:"1rem"}}
+            className="w-full bg-zinc-800 text-white   rounded-2xl outline-0 border-0 hover:border-1 border-blue-400 placeholder-gray-500"
+          />
+        </div>
+
+        {/* confirm password */}
+        <div className="relative flex items-center">
+          <IoLockClosedOutline className="absolute left-4 text-gray-500 text-xl" />
+          <input 
+            type="password" 
+            placeholder=" Confirm Password" 
+          style={{paddingTop:"0.75rem",paddingBottom:"0.75rem",paddingLeft:"3rem",paddingRight:"1rem"}}
+            className="w-full bg-zinc-800 text-white   rounded-2xl outline-0 border-0 hover:border-1 border-blue-400 placeholder-gray-500"
+          />
+        </div>
+    
+
+     <button className="login-btn flex items-center justify-center gap-2 w-full h-12 text-white text-xl  rounded-2xl transition-transform duration-200 ease-linear active:-translate-y-[-2px]">Create account <MdArrowForward/></button>
+
+     <p className="text-gray-500 text-center">Don't have an account? <span className="login-left-middle-h2 ">Create one</span></p>
+     </form>
+
+     
+
+
+    </div>
+  )
+}
+
+export default Register

@@ -24,7 +24,7 @@ console.log(product);
         {/* Product Image */}
         <img
          style={{marginTop:"0.15rem"}}
-          src={product.image_url}
+          src={product.image}
           alt={product.title}
           className=" mx-auto  h-52 w-full object-contain transition-transform duration-300 hover:scale-105
         "/>
@@ -40,7 +40,7 @@ console.log(product);
 
         {/* Product Name */}
         <h2
-        className="    min-h-[64px]  text-md  font-semibold  leading-8  text-white">
+        className=" text-md font-semibold text-white leading-8 h-16 line-clamp-2 overflow-hidden">
         {product.title}
         </h2>
 
@@ -50,7 +50,7 @@ console.log(product);
             <FaStar
               key={index}
               className={`text-[10px] ${
-                index < Math.floor(product.rating)
+                index < Math.floor(product.rating.rate)
                   ? "text-yellow-400"
                   : "text-zinc-600"
               }`}
@@ -58,7 +58,7 @@ console.log(product);
           ))}
 
           <span className="ml-2 text-[12px] text-zinc-500">
-            ({product.reviews})
+            ({product.rating.count})
           </span>
 
         </div>

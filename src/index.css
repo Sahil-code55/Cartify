@@ -74,6 +74,31 @@ button, input, textarea {
   font-family: inherit;
 }
 
+/* scrollbar hiding */
+
+/* Hide scrollbar for Chrome, Edge & Safari */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for IE & old Edge */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+}
+
+
+
+
+
+
+
+
+
 /* Layout */
 #root {
   display: flex;
@@ -754,3 +779,57 @@ margin-bottom: 30px;
   font-weight: 500;
 }
 
+
+
+/* about-section */
+
+/* small Screen */
+@media (min-width: 640px) {
+  .about-section {
+    padding-left: 1.5rem;  /* 24px */
+    padding-right: 1.5rem; /* 24px */
+  }
+}
+
+/* large Screen */
+@media (min-width: 1024px) {
+  .about-section {
+    padding-left: 2rem;  /* 32px */
+    padding-right: 2rem; /* 32px */
+  }
+}
+
+@media (min-width: 768px) {
+.about-story{
+  padding: 3rem;
+}
+}
+@media (min-width: 768px) {
+.about-banner{
+  padding: 3.5rem;
+}
+}
+
+.about-btn{
+  padding: 0.65rem 1.02rem;
+  border-radius: 50px;
+  background: var(--primary-gradient);
+  color: rgb(211, 209, 209);
+}
+
+
+/* login page  */
+
+.login-left-middle-h2{
+ 
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.045em;
+  cursor: pointer;
+
+}
+
+.login-btn{
+  background: var( --primary-gradient)
+}
