@@ -75,7 +75,7 @@ import { MdLogout } from "react-icons/md";
     
     {/* Navbar Links */}
     <div className="navbar-links flex justify-center gap-10 text-xl text-white">
-    <NavLink className="nav-link-btn" to="/">Home</NavLink>
+    <NavLink className="nav-link-btn" to="/home">Home</NavLink>
     <NavLink className="nav-link-btn" to="/shop">Shop</NavLink>
     <NavLink className="nav-link-btn" to="/about">About</NavLink>
     <NavLink className="nav-link-btn" to="/profile">Profile</NavLink>

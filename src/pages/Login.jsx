@@ -2,7 +2,8 @@
 import React, { useContext } from 'react'
 import { Package, Users, Star, Truck,  } from 'lucide-react';
 import { MdArrowForward } from "react-icons/md";
-import { checkAuthContext } from '../context/AuthContext';
+// import { CheckAuthContext } from '../context/AuthContext';
+import { NavLink } from 'react-router-dom';
 // import { useForm } from 'react-hook-form';
 const Login = () => {
      // Metrics Data
@@ -252,7 +253,7 @@ const Login = () => {
 
    <button  className="login-btn flex items-center justify-center gap-2 w-full h-12 text-white text-xl  rounded-2xl transition-transform duration-200 ease-linear active:-translate-y-[-2px] ">Sign in <MdArrowForward/> </button>
 
-   <p className="text-gray-500 text-center">Don't have an account? <span className="login-left-middle-h2 ">Create one</span></p>
+   <p className="text-gray-500 text-center">Don't have an account? <span className="login-left-middle-h2 "> <NavLink to="/register">Create one</NavLink></span></p>
    </form>
 
 

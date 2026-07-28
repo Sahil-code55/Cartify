@@ -63,30 +63,60 @@ import React from 'react'
 import { Routes, Route } from "react-router-dom";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import MainLayout from "./layouts/MinLayout";
+import ProtectedRoute from "./routes/ProtectedRoute";
 //pages
 
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
-
 import Shop from "./pages/Shop";
 import NotFound from "./pages/NotFound";
+import Register from './pages/Register';
+import Login from './pages/Login';
 
 const App = () => {
   return (
-    <div className="app-container ">
-    <>
-      <Navbar/>
-       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/shop" element={<Shop/>} />
+  //   <div className="app-container ">
+  //   <>
+  //     <Navbar/>
+  //      <Routes>
+  //       <Route path="/" element={<Home />} />
+  //       <Route path="/shop" element={<Shop/>} />
+  //       <Route path="/about" element={<About />} />
+  //       <Route path="/profile" element={<Profile />} />
+  //       <Route path="/register" element={<Register />} />
+  //       <Route path="/Login" element={<Login />} />
+  //       <Route path="*" element={<NotFound />} />
+  //     </Routes>
+  //   </> 
+  // <Footer/>
+  //   </div>
+   <Routes>
+
+      {/* Public Routes */}
+
+      <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      {/* Protected Routes */}
+
+      <Route
+        element={
+          <ProtectedRoute>
+            <MainLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="/home" element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </> 
-  <Footer/>
-    </div>
+      </Route>
+
+      <Route path="*" element={<NotFound />} />
+
+    </Routes>
   )
 }
 

@@ -6,17 +6,21 @@ import App from './App.jsx'
 import { ShopProductContextProvider } from './context/ProductContext.jsx';
 import Login from "./pages/Login.jsx"
 import Register from './pages/Register.jsx';
+import { AuthProvider } from './context/AuthContext.jsx';
+
 
 createRoot(document.getElementById('root')).render(
 
 
 
-  <ShopProductContextProvider>
- <BrowserRouter>
-    {/* <App /> */}
+<ShopProductContextProvider>
+  <AuthProvider>
+  <BrowserRouter>
+    <App />
     {/* <Login/> */}
-    <Register/>
+    {/* <Register/> */}
   </BrowserRouter>
-  </ShopProductContextProvider>
+  </AuthProvider>
+</ShopProductContextProvider>
 
 )
