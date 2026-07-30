@@ -1,12 +1,12 @@
-
-import React, { useContext } from 'react'
 import { Package, Users, Star, Truck, LogOut,  } from 'lucide-react';
 import { MdArrowForward } from "react-icons/md";
 import { IoMailOutline } from "react-icons/io5";
 import { IoLockClosedOutline } from "react-icons/io5";
-// import { CheckAuthContext } from '../context/AuthContext';
 import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 const Login = () => {
      // Metrics Data
   const metrics = [
@@ -15,25 +15,33 @@ const Login = () => {
     { id: 3, value: '4.9', label: 'Rating', icon: <Star className="w-5 h-5 text-primary fill-primary" /> },
   ];
 
-//   let {user ,SetUser } = useContext(checkAuthContext);
+const navigate = useNavigate();
+const { login } = useContext(AuthContext);
 
   let {register , handleSubmit ,reset ,formState:{errors}} =useForm({mode:"onChange"});
 
   const onLoginSubmit =(data)=>{
   const usersData = JSON.parse(localStorage.getItem("users"))||[];
-    
-  // check any user present in localstorage
-  if(!usersData.email || usersData.password){
-    console.error("No account found .please register first ")
-  }
 
-  if(data.email !== usersData.email || data.password !== usersData.password){
-    console.error("Invalid Email and password.")
+  if(usersData.length === 0){
+    alert("No account found .please register first ")
+    return
+  }
+   // check any user present in localstorage
+  const user = usersData.find((user)=> user.email === data.email)
+
+  if (!user) {
+    console.error("Email is not registered.");
+    return;
+}
+
+  if( user.password !== data.password ){
+    console.error("Incorrect password.")
     return;
   }
      console.log("login successfully !");
-     
-     
+    login(user);
+    navigate("/home");
   }
    
 //     let arr =[...user , logUser]
