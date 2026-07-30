@@ -1,10 +1,12 @@
 
 import React, { useContext } from 'react'
-import { Package, Users, Star, Truck,  } from 'lucide-react';
+import { Package, Users, Star, Truck, LogOut,  } from 'lucide-react';
 import { MdArrowForward } from "react-icons/md";
+import { IoMailOutline } from "react-icons/io5";
+import { IoLockClosedOutline } from "react-icons/io5";
 // import { CheckAuthContext } from '../context/AuthContext';
 import { NavLink } from 'react-router-dom';
-// import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 const Login = () => {
      // Metrics Data
   const metrics = [
@@ -15,14 +17,23 @@ const Login = () => {
 
 //   let {user ,SetUser } = useContext(checkAuthContext);
 
-//   let {register , handleSubmit ,reset ,formState:{errors}} =useForm({mode:"onChange"});
+  let {register , handleSubmit ,reset ,formState:{errors}} =useForm({mode:"onChange"});
 
-  let formSubmit =(data)=>{
-    const logUser = {
-        id: Date.now(),
-        ...data
-    }
-    console.log(data);
+  const onLoginSubmit =(data)=>{
+  const usersData = JSON.parse(localStorage.getItem("users"))||[];
+    
+  // check any user present in localstorage
+  if(!usersData.email || usersData.password){
+    console.error("No account found .please register first ")
+  }
+
+  if(data.email !== usersData.email || data.password !== usersData.password){
+    console.error("Invalid Email and password.")
+    return;
+  }
+     console.log("login successfully !");
+     
+     
   }
    
 //     let arr =[...user , logUser]
@@ -75,7 +86,7 @@ const Login = () => {
   {/* Left side  */}
   <div 
         style={{paddingTop:"2.5rem",paddingLeft:"2.5rem"}}
-        className="  bg-[#191919]">
+        className="  bg-[#121212]">
 
     {/* header logo */}
             <div  className="navbar-logo flex items-center cursor-pointer justify-self-start">
@@ -227,8 +238,9 @@ const Login = () => {
 
 
    <form 
+   onSubmit={handleSubmit(onLoginSubmit)}
    style={{paddingTop:"0.98rem",paddingBottom:"0.98rem",paddingLeft:"1.5rem",paddingRight:"1.5rem"}}
-   className="h-90 w-110 rounded-3xl flex flex-col gap-7 border-2 border-[#1D1D1D]  bg-[#111111]" >
+   className=" w-110 rounded-3xl flex flex-col gap-7 border-2 border-[#1D1D1D]  bg-[#111111]" >
 
     {/* top text */}
     <div className="top">
@@ -240,18 +252,51 @@ const Login = () => {
    {/* middle form */}
    <div  className=" flex flex-col gap-4 ">
 
-    <input
-    style={{paddingLeft:"1rem"}}
-    className="bg-[#1D1D1D] h-12 w-full text-gray-400 rounded-xl outline-0 border-0 hover:border-1 border-blue-400"
-     type="email" placeholder="Email address" />
+         {/* Email Input */}
+        <div className="relative flex flex-col items-center">
+          <IoMailOutline className="absolute top-3.5 left-4 text-gray-500 text-xl" />
+          <input 
+            type="email" 
+            placeholder="Email address" 
+          style={{paddingTop:"0.75rem",paddingBottom:"0.75rem",paddingLeft:"3rem",paddingRight:"1rem"}}
+            className="w-full bg-zinc-800 text-white   rounded-2xl outline-0 border-0 hover:border-1 border-blue-400 placeholder-gray-500"
+             {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value:
+                  /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Invalid Email",
+              },
+            })}
+          />
+            <p className="text-red-500 mt-1">
+            {errors.email?.message}
+          </p>
+        </div>
 
-    <input
-      style={{paddingLeft:"1rem"}}
-       className="bg-[#1D1D1D] h-12 w-full text-gray-400 rounded-xl  outline-0 border-0 hover:border-1 border-blue-400"
-     type="password" placeholder="password" />
+           {/* Password Input */}
+        <div className="relative flex  flex-col items-center">
+          <IoLockClosedOutline className="absolute top-3.5  left-4 text-gray-500 text-xl" />
+          <input 
+            type="password" 
+            placeholder="Password " 
+          style={{paddingTop:"0.75rem",paddingBottom:"0.75rem",paddingLeft:"3rem",paddingRight:"1rem"}}
+            className="w-full bg-zinc-800 text-white   rounded-2xl outline-0 border-0 hover:border-1 border-blue-400 placeholder-gray-500"
+            {...register("password", {
+              required: "Password required",
+            
+            })}
+          />
+           <p className="text-red-500 mt-1">
+            {errors.password?.message}
+          </p>
+        </div>
    </div>
 
-   <button  className="login-btn flex items-center justify-center gap-2 w-full h-12 text-white text-xl  rounded-2xl transition-transform duration-200 ease-linear active:-translate-y-[-2px] ">Sign in <MdArrowForward/> </button>
+   <button 
+   type="submit"
+    className="login-btn relative flex items-center justify-center gap-2 w-full h-12 text-white text-xl  rounded-2xl transition-transform duration-200 ease-linear hover:-translate-y-[1px] active:translate-y-[-1px]  active:cursor-progress bg-gradient-to-br from-[#2563EB] to-[#38BDF8] before:absolute before:top-1 before:left-0 before:w-full before:h-full before:-z-10 before:rounded-lg before:bg-gradient-to-br before:from-[#2563EB] before:to-[#38BDF8] before:blur-md before:opacity-40
+     ">Sign in <MdArrowForward/> </button>
 
    <p className="text-gray-500 text-center">Don't have an account? <span className="login-left-middle-h2 "> <NavLink to="/register">Create one</NavLink></span></p>
    </form>

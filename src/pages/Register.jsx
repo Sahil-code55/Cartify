@@ -362,7 +362,10 @@ const Register = () => {
         </div>
     
 
-     <button type="submit" className="login-btn flex items-center justify-center gap-2 w-full h-12 text-white text-xl  rounded-2xl transition-transform duration-200 ease-linear active:-translate-y-[-2px]">Create account <MdArrowForward/></button>
+     <button 
+    type="submit" 
+    className="login-btn relative flex items-center justify-center gap-2 w-full h-12 text-white text-xl rounded-2xl transition-transform duration-200 ease-linear active:translate-y-[-1px] active:cursor-progress hover:-translate-y-[1px] bg-gradient-to-br from-[#2563EB] to-[#38BDF8] before:absolute before:top-1 before:left-0 before:w-full before:h-full before:-z-10 before:rounded-lg before:bg-gradient-to-br before:from-[#2563EB] before:to-[#38BDF8] before:blur-md before:opacity-40
+    ">Create account <MdArrowForward/></button>
 
      <p className="text-gray-500 flex items-center justify-center gap-1 text-center">Don't have an account? 
      <span className="login-left-middle-h2 "> <NavLink to="/">Log in</NavLink></span>
