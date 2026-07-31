@@ -6,9 +6,10 @@ import CustomSelector from "./CustomSelector";
 const ProductFilters = () => {
 const [category, setCategory] = useState("All Categories");
 const [sort, setSort] = useState("Featured");
+
   return (
     <section
-     style={{marginTop:"2.5rem" ,padding:"1.25rem"}} 
+     style={{padding:"1.25rem"}} 
      className=" border border-white/20  rounded-3xl">
 
       <div className="flex gap-4">
@@ -37,9 +38,9 @@ const [sort, setSort] = useState("Featured");
       options={[
         "All Categories",
         "Electronics",
-        "Clothing",
-        "Furniture",
-        "Sports",
+        " Male Clothing",
+        "Female Clothing",
+        "Jewelery",
       ]}
       selected={category}
       setSelected={setCategory}

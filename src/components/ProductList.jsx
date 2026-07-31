@@ -1,7 +1,10 @@
 import { FaArrowRight, FaStar } from "react-icons/fa";
 import ProductRow from "./ProductRow";
+import { useNavigate } from "react-router-dom";
 
 const ProductList = ({ title, products }) => {
+
+  const navigate = useNavigate()
   return (
     <div className="top-product h-[600px] bg-white rounded-[32px] flex flex-col ">
 
@@ -19,7 +22,8 @@ const ProductList = ({ title, products }) => {
         </div>
 
         <button
-         className="top-product-seeAllBtn flex items-center gap-2 text- font-semibold ">
+        onClick={() => navigate("/shop")}
+         className="top-product-seeAllBtn flex items-center gap-2 text- font-semibold cursor-pointer hover: ">
           See All
           <FaArrowRight className="text-blue-600"/>
         </button>

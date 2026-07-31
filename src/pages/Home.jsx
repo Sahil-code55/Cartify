@@ -7,34 +7,49 @@ import { categories } from "../data/categories";
 import { FaBolt, FaShieldAlt, FaStar, FaTag } from 'react-icons/fa';
 import ProductList from "../components/ProductList";
 import { ShopProductContext } from '../context/ProductContext';
-// import { products } from "../data/products";
+
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from 'react-router-dom';
+import { get } from 'react-hook-form';
 
 const Home = () => {
  let  {shopProductData }= useContext(ShopProductContext);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate()
 
 const topRated = shopProductData.filter((item) => item.rating.rate >= 4.5);
 const newArrivals = shopProductData.slice(0, 5);
 
+
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  
+  if (hour >= 5 && hour < 12) {
+    return "Good Morning";
+  } else if (hour >= 12 && hour < 17) {
+    return "Good Afternoon";
+  } else if (hour >= 17 && hour < 22) {
+    return "Good Evening";
+  } else {
+    return "Good Night"; 
+  }
+};
   return (
 <div className="page home-page min-h-screen overflow-hidden  bg-[#111]  bg-[length:40px_40px]
     bg-[image:linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)]" 
 
   >
     <div className="hero-section flex text-center text-white border-2 border-[#797A7C] overflow-hidden relative">
-        {/* <h1>Summer Collection 2026</h1>
-        <p>Discover premium products crafted with exceptional design, modern aesthetics, and ultimate functionality.</p>
-        <button className="btn btn-primary" onClick={() => setCurrentPage('shop')}>
-          Shop Now
-        </button> */}
+      
         <div
        className="hero-main-left  flex flex-col items-start gap-3">
-      <div className="greeting flex justify-center items-center   gap-2">
-        <h2 className="">GOOD AFTERNOON </h2>  
+      <div className="greeting flex justify-center items-center text-xl   gap-2">
+        <h2 className="">{getGreeting()}</h2>  
             <MdOutlineWavingHand />
        </div>
-       <div className="welcome-section text-start">
+       <div className="welcome-section text-start"> 
        <h2 className="text-6xl">Welcome back,</h2>
-       <h2 className="welcome-section-user text-5xl">SAHIL!</h2>
+       <h2 className="welcome-section-user text-5xl">{user?.fullName}</h2>
        </div>
        <p className="text-[#6D6C6D] text-start">
         Discover today's picks — hand-curated products across <br /> electronics, fashion, and more.
@@ -64,7 +79,10 @@ const newArrivals = shopProductData.slice(0, 5);
  <div className="category-tittle  flex items-center justify-between">
     <h2 className="text-white text-2xl"> Shop by Category</h2>
     <div className="view-all flex items-center justify-center gap-1">
-    <span>View All</span>
+    <span onClick={() =>{
+      
+      
+       navigate("/shop")}} >View All</span>
      < IoMdArrowForward/>
     </div>
   </div>

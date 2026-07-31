@@ -69,7 +69,6 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Profile from "./pages/Profile";
 import Shop from "./pages/Shop";
 import NotFound from "./pages/NotFound";
 import Register from './pages/Register';
@@ -111,7 +110,6 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/about" element={<About />} />
-        <Route path="/profile" element={<Profile />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

@@ -2,11 +2,18 @@ import React, { useEffect, useState  } from 'react'
 import { NavLink, useNavigate } from "react-router-dom";
 import { IoCartOutline } from "react-icons/io5";
 import { MdLogout } from "react-icons/md";
-// import { useCart } from '../context/CartContext';
+import {useContext} from "react";
+import { AuthContext } from "../context/AuthContext";
+
+
 
   const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const navigate = useNavigate()
+  
+    const { user ,logout } = useContext(AuthContext);
+
+    
 
   useEffect(()=>{
   const handleScroll = () =>{
@@ -37,7 +44,7 @@ import { MdLogout } from "react-icons/md";
 
   {/* NavBar Logo */}
      <div  className="navbar-logo flex items-center cursor-pointer justify-self-start" 
-     onClick={() => navigate("/")}>
+     onClick={() => navigate("/home")}>
   <svg className="h-8 w-16" width="240" height="160" viewBox="0 0 240 165" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="cartGradient" x1="0" y1="0" x2="240" y2="160" gradientUnits="userSpaceOnUse">
@@ -78,7 +85,7 @@ import { MdLogout } from "react-icons/md";
     <NavLink className="nav-link-btn" to="/home">Home</NavLink>
     <NavLink className="nav-link-btn" to="/shop">Shop</NavLink>
     <NavLink className="nav-link-btn" to="/about">About</NavLink>
-    <NavLink className="nav-link-btn" to="/profile">Profile</NavLink>
+  
       </div>
      
       <div className="navbar-actions   flex items-center justify-self-end gap-4">
@@ -86,20 +93,18 @@ import { MdLogout } from "react-icons/md";
       <div 
       className="user   flex items-center justify-center gap-3 rounded-2xl  ">
         <div className="userlogo h-7 w-7  flex items-center justify-center border-0 rounded-sm " >
-           <h1 className="text-md text-white" >S</h1> </div>
+           <h1 className="text-md text-white"> {user?.fullName.charAt(0).toUpperCase()} </h1> </div>
            
-       <h1 className="text-white"> SAHIL SAHU</h1>
+       <h1 className="text-white"> {user?.fullName}</h1>
       </div>
 
-      <div className="cart-logo h-10 w-10 text-white flex items-center justify-center rounded-xl text-xl cursor-pointer "> <IoCartOutline /> </div>
-      <div className="cart-logo h-10 w-10 text-white flex items-center justify-center rounded-xl text-xl cursor-pointer "> <MdLogout /> </div>
-        {/* <button
-          className= 
-          {`nav-link-btn ${currentPage === 'login' ? 'active' : ''}`}
-          onClick={() => setCurrentPage('login')}
-        >
-          Login
-        </button> */}
+      <div className="cart-logo h-10 w-10 text-white flex items-center justify-center rounded-xl text-xl cursor-pointer "> <button><IoCartOutline className="cursor-pointer active:scale-10" /></button> </div>
+
+      <div className="cart-logo h-10 w-10 text-white flex items-center justify-center border-0 rounded-xl text-xl cursor-pointer ">  <button onClick={()=>{
+        if(confirm("Are you sure you want to Logout")){
+        logout()}
+      }}><MdLogout className="cursor-pointer active:scale-10" /> </button>  </div>
+       
       </div>
 
  </nav>
