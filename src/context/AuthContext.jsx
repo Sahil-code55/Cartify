@@ -38,7 +38,7 @@ const [user, setUser] = useState(() => {
     setIsLoggedIn(false);
   };
 
-  console.log("AuthContext:", isLoggedIn);
+
 
     // const [user, setUser] = useState([]);
 

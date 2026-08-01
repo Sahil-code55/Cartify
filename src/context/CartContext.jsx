@@ -45,7 +45,7 @@ export const CartProvider = ({ children }) => {
     const updatedCart = [...prev, product];
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
-    console.log("Updated Cart:", updatedCart);
+   
     return updatedCart;
   });
 };
