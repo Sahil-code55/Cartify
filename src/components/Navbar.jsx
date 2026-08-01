@@ -4,6 +4,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { MdLogout } from "react-icons/md";
 import {useContext} from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
 
 
 
@@ -11,9 +12,10 @@ import { AuthContext } from "../context/AuthContext";
   const [isScrolled, setIsScrolled] = useState(false)
   const navigate = useNavigate()
   
-    const { user ,logout } = useContext(AuthContext);
+  const { user ,logout } = useContext(AuthContext);
+  const { openCart } = useCart();
+  
 
-    
 
   useEffect(()=>{
   const handleScroll = () =>{
@@ -98,7 +100,7 @@ import { AuthContext } from "../context/AuthContext";
        <h1 className="text-white"> {user?.fullName}</h1>
       </div>
 
-      <div className="cart-logo h-10 w-10 text-white flex items-center justify-center rounded-xl text-xl cursor-pointer "> <button><IoCartOutline className="cursor-pointer active:scale-10" /></button> </div>
+      <div className="cart-logo h-10 w-10 text-white flex items-center justify-center rounded-xl text-xl cursor-pointer "> <button onClick={openCart}><IoCartOutline className="cursor-pointer active:scale-10" /></button> </div>
 
       <div className="cart-logo h-10 w-10 text-white flex items-center justify-center border-0 rounded-xl text-xl cursor-pointer ">  <button onClick={()=>{
         if(confirm("Are you sure you want to Logout")){

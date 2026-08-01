@@ -177,7 +177,7 @@ button, input, textarea {
   
 }
 .cart-logo:hover{
-     border: 1.5px solid rgb(206, 203, 203);
+     border: 1.2px solid #3c92bb;
 }
 
 .navbar-links .nav-link-btn {
@@ -836,4 +836,13 @@ margin-bottom: 30px;
 
 .login-btn{
   background: var( --primary-gradient)
+}
+
+.cart-drawer{
+  
+  padding: 10px 15px;
+  background: var(--primary-gradient);
+  transition: all var(--transition-fast);
+    box-shadow: var(--shadow-primary);
+
 }

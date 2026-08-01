@@ -7,22 +7,24 @@ const ProductFilters = () => {
 const [category, setCategory] = useState("All Categories");
 const [sort, setSort] = useState("Featured");
 
+const searchHandler = (e) => {
+  const searchTerm = e.target.value.toLowerCase();  
+  
+}
+
   return (
     <section
      style={{padding:"1.25rem"}} 
      className=" border border-white/20  rounded-3xl">
-
       <div className="flex gap-4">
 
         {/* Search */}
-
         <div className="flex-1 relative">
 
-          <FiSearch
-            className="absolute left-5 top-1/2 -translate-y-1/2 text-zinc-500 text-xl"
-          />
+        <FiSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-zinc-500 text-xl"/>
 
           <input
+          onChange={searchHandler}
             type="text"
             placeholder="Search products..."
             style={{paddingLeft:"3.5rem",paddingRight:"1rem"}}
@@ -33,7 +35,6 @@ const [sort, setSort] = useState("Featured");
         </div>
 
  {/* Category */}
-
      <CustomSelector
       options={[
         "All Categories",
@@ -48,7 +49,6 @@ const [sort, setSort] = useState("Featured");
 
 
    {/* Sort */}
-
     <CustomSelector
       options={[
         "Featured",
@@ -60,10 +60,7 @@ const [sort, setSort] = useState("Featured");
       setSelected={setSort}
     />
     
-     
-    
       </div>
-
     </section>
   );
 };

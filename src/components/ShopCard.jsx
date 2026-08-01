@@ -1,9 +1,12 @@
 import React from 'react'
 import { FaStar, FaCartPlus } from "react-icons/fa";
+import { useCart } from '../context/CartContext';
 
 const ShopCard = ({ product}) => {
-console.log(product);
     if (!product) return null;
+
+
+    const { addToCart  } = useCart();
   return (
        <div
       className=" overflow-hidden rounded-[30px] border border-white/15 bg-white 
@@ -74,7 +77,8 @@ console.log(product);
 
           <button
           style={{padding:"0.25rem 1rem"}}
-            className=" flex items-center gap-2 rounded-full bg-[#38BDF8]  font-semibold text-black transition-all duration-300 hover:scale-105 hover:bg-[#38BDF8]">
+          onClick={() => addToCart(product)}
+            className=" flex items-center gap-2 rounded-full bg-[#38BDF8]  font-semibold text-black transition-all duration-300 hover:scale-105 active:scale-95 hover:bg-[#38BDF8]">
           <FaCartPlus />
             Add
           </button>
