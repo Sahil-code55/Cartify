@@ -10,7 +10,7 @@ import CartCard from "./CartCard";
 
 
 const CartDrawer = () => {
-  const { isCartOpen, closeCart, cart  } = useCart();
+  const { isCartOpen, closeCart, cart ,totalAmount, clearCart } = useCart();
 
   const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ const CartDrawer = () => {
                  Cart
               </h2>
               <p style={{padding:"0.15rem 0.75rem"}} className="text-sm text-blue-500 bg-[#0c47f930] rounded-full">
-                0 Items
+                 {cart.length} Items
               </p>
            
           </div>
@@ -64,7 +64,7 @@ const CartDrawer = () => {
      className="border-t border-white">
       <div className="flex items-center justify-between">
         <span className="text-white text-lg ">Total:</span>
-        <span className="text-white font-semibold text-lg">$0.00</span>
+        <span className="text-white font-semibold text-lg">${totalAmount.toFixed(2)}</span>
         </div>
        
         <button
@@ -73,7 +73,7 @@ const CartDrawer = () => {
         hover:scale-103 active:scale-100 transition-all duration-300"
         > <span className="text-lg">Checkout</span> <IoMdArrowForward className="text-xl" /> </button>
     
-    <p style={{marginTop:"0.7rem"}} className="text-zinc-500 text-sm text-center cursor-pointer hover:text-[#F85433] transition-colors duration-300 active:scale-95">
+    <p onClick={clearCart} style={{marginTop:"0.7rem"}} className="text-zinc-500 text-sm text-center cursor-pointer hover:text-[#F85433] transition-colors duration-300 active:scale-95">
       Clear Cart
     </p>
 

@@ -1,12 +1,17 @@
 import React from 'react'
 import { FaStar, FaCartPlus } from "react-icons/fa";
 import { useCart } from '../context/CartContext';
+import { div } from 'framer-motion/client';
 
 const ShopCard = ({ product}) => {
     if (!product) return null;
 
 
-    const { addToCart  } = useCart();
+    const { cart, addToCart ,deleteProduct  } = useCart();
+    const cartItem = cart.find((item) => item.id === product.id);
+
+
+     
   return (
        <div
       className=" overflow-hidden rounded-[30px] border border-white/15 bg-white 
@@ -75,13 +80,32 @@ const ShopCard = ({ product}) => {
             ${product.price}
           </h3>
 
-          <button
-          style={{padding:"0.25rem 1rem"}}
+          {/* <button
+          style={{padding:"0.20rem 0.44rem"}}
           onClick={() => addToCart(product)}
-            className=" flex items-center gap-2 rounded-full bg-[#38BDF8]  font-semibold text-black transition-all duration-300 hover:scale-105 active:scale-95 hover:bg-[#38BDF8]">
+            className=" flex items-center gap-1   rounded-full bg-[#38BDF8]  font-medium text-md text-black transition-all duration-300 hover:scale-105 active:scale-95 hover:bg-[#38BDF8]">
           <FaCartPlus />
-            Add
-          </button>
+            Add to Cart
+          </button> */}
+          {!cartItem ? (
+  <button
+    onClick={() => addToCart(product)}
+    className="flex items-center gap-2 rounded-full bg-[#38BDF8] font-semibold text-black transition-all duration-300 hover:scale-105 active:scale-95"
+    style={{ padding: "0.25rem 1rem" }}
+  >
+    <FaCartPlus />
+    Add
+  </button>
+) : (
+    
+  <button
+    onClick={() => addToCart(product)}
+    className="rounded-full bg-[#38BDF8] font-semibold text-black transition-all duration-300 hover:scale-105 active:scale-95"
+    style={{ padding: "0.25rem 1rem", minWidth: "70px" }}
+  >
+    +{cartItem.quantity}
+  </button>
+)}
 
         </div>
 
@@ -93,3 +117,4 @@ const ShopCard = ({ product}) => {
 }
 
 export default ShopCard
+  
