@@ -16,7 +16,7 @@ const ShopCard = ({ product}) => {
        <div
       className=" overflow-hidden rounded-[30px] border border-white/15 bg-white 
       transition-all duration-300 hover:-translate-y-2
-       hover:shadow-[0_20px_50px_rgba(56,189,248,0.15)]"
+       hover:shadow-[0_20px_50px_rgba(56,189,248,0.15)] hover:border-[#38BDF8]  border-shadow-[0_0px_20px_rgba(56,189,248,0.15)]" 
     >
       {/* Top Section */}
       <div style={{padding:"0 1.5rem", paddingTop:"1rem", paddingBottom:"1.05rem"}}
@@ -80,13 +80,7 @@ const ShopCard = ({ product}) => {
             ${product.price}
           </h3>
 
-          {/* <button
-          style={{padding:"0.20rem 0.44rem"}}
-          onClick={() => addToCart(product)}
-            className=" flex items-center gap-1   rounded-full bg-[#38BDF8]  font-medium text-md text-black transition-all duration-300 hover:scale-105 active:scale-95 hover:bg-[#38BDF8]">
-          <FaCartPlus />
-            Add to Cart
-          </button> */}
+       
           {!cartItem ? (
   <button
     onClick={() => addToCart(product)}

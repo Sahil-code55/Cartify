@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import ShopCard  from "../components/ShopCard"
 import ShopProductFilter from '../components/ShopProductFilter';
-import ShopProductGrid from '../components/ShopProductgrid';
+import ShopProductGrid from '../components/ShopProductGrid';
 import { ShopProductContext } from '../context/ProductContext';
 // import { products } from '../data/products';
 

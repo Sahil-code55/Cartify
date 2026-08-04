@@ -1,14 +1,17 @@
 import { FiSearch } from "react-icons/fi";
 import { IoChevronDown } from "react-icons/io5";
-import { useState } from "react";
 import CustomSelector from "./CustomSelector";
+import { useContext, useState } from "react";
+import { ShopProductContext } from "../context/ProductContext";
+
 
 const ProductFilters = () => {
-const [category, setCategory] = useState("All Categories");
-const [sort, setSort] = useState("Featured");
+
+const { searchTerm, setSearchTerm , selectedCategory, setSelectedCategory, sort, setSort} = useContext(ShopProductContext);
+
 
 const searchHandler = (e) => {
-  const searchTerm = e.target.value.toLowerCase();  
+   setSearchTerm(e.target.value);
   
 }
 
@@ -24,6 +27,7 @@ const searchHandler = (e) => {
         <FiSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-zinc-500 text-xl"/>
 
           <input
+          value={searchTerm}
           onChange={searchHandler}
             type="text"
             placeholder="Search products..."
@@ -37,14 +41,14 @@ const searchHandler = (e) => {
  {/* Category */}
      <CustomSelector
       options={[
-        "All Categories",
-        "Electronics",
-        " Male Clothing",
-        "Female Clothing",
-        "Jewelery",
+         "All Categories",
+         "electronics",
+         "men's clothing",
+         "women's clothing",
+        "jewelery",
       ]}
-      selected={category}
-      setSelected={setCategory}
+      selected={selectedCategory}
+      setSelected={setSelectedCategory}
     />
 
 
