@@ -7,7 +7,7 @@ import { ShopProductContext } from "../context/ProductContext";
 
 const ProductFilters = () => {
 
-const { searchTerm, setSearchTerm , selectedCategory, setSelectedCategory, sort, setSort} = useContext(ShopProductContext);
+const { searchTerm, setSearchTerm , selectedCategory, setSelectedCategory, sortOption, setSortOption} = useContext(ShopProductContext);
 
 
 const searchHandler = (e) => {
@@ -60,8 +60,8 @@ const searchHandler = (e) => {
         "Price High to Low",
         "Rating",
       ]}
-      selected={sort}
-      setSelected={setSort}
+      selected={sortOption}
+      setSelected={setSortOption}
     />
     
       </div>

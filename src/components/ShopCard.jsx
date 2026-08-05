@@ -2,6 +2,7 @@ import React from 'react'
 import { FaStar, FaCartPlus } from "react-icons/fa";
 import { useCart } from '../context/CartContext';
 import { div } from 'framer-motion/client';
+import { useNavigate } from 'react-router-dom';
 
 const ShopCard = ({ product}) => {
     if (!product) return null;
@@ -10,13 +11,20 @@ const ShopCard = ({ product}) => {
     const { cart, addToCart ,deleteProduct  } = useCart();
     const cartItem = cart.find((item) => item.id === product.id);
 
-
+   const navigate = useNavigate();
      
   return (
        <div
-      className=" overflow-hidden rounded-[30px] border border-white/15 bg-white 
+       onClick={(e)=>{
+         navigate(`/product-details/${product.id}`)
+        console.log(product)
+         
+         
+        
+        }}
+      className=" overflow-hidden rounded-[30px] border border-white/15  
       transition-all duration-300 hover:-translate-y-2
-       hover:shadow-[0_20px_50px_rgba(56,189,248,0.15)] hover:border-[#38BDF8]  border-shadow-[0_0px_20px_rgba(56,189,248,0.15)]" 
+       hover:shadow-[0_20px_50px_rgba(56,189,248,0.15)] hover:border-[#38BDF8]  border-shadow-[0_0px_20px_rgba(56,189,248,0.15)] hover: border-2" 
     >
       {/* Top Section */}
       <div style={{padding:"0 1.5rem", paddingTop:"1rem", paddingBottom:"1.05rem"}}
