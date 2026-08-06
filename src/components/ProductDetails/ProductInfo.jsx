@@ -1,23 +1,18 @@
-// import React from 'react'
-
-// const ProductInfo = () => {
-//   return (
-//     <div  className="h-full w-[60%] flex flex-col gap-4 bg-white rounded-[30px]  ">
-
-//     </div>
-//   )
-// }
-
-// export default ProductInfo
 
 
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { FiHeart, FiShoppingCart } from "react-icons/fi";
 import {MdLocalShipping,MdOutlineSecurity,MdOutlineReplay,} from "react-icons/md";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 
-const ProductInfo = () => {
+import { useCart } from "../../context/CartContext";
+import ProductNavigation from "./ProductNavigation";
+
+
+
+const ProductInfo = ( { product , nextProduct ,previousProduct}) => {
+const { addToCart } = useCart();
+
   return (
     <div className="w-[55%] flex flex-col ">
 
@@ -26,7 +21,7 @@ const ProductInfo = () => {
         style={{ padding: "6px 18px" }}
         className="w-fit rounded-full border border-blue-400 bg-blue-400/10 text-blue-400 text-xs font-semibold"
       >
-        Electronics
+        {product.category}
       </span>
 
       {/* Title */}
@@ -34,7 +29,7 @@ const ProductInfo = () => {
         style={{ marginTop: "1rem" }}
         className="text-3xl font-bold text-white leading-tight"
       >
-        Smart Watch Series 5
+        {product.title}
       </h1>
 
       {/* Rating */}
@@ -55,10 +50,10 @@ const ProductInfo = () => {
           style={{ marginLeft: "0.4rem" }}
           className="text-sm font-semibold text-zinc-300"
         >
-          4.2
+          {product.rating.rate}
         </span>
 
-        <span className="text-zinc-500 text-sm">(85 reviews)</span>
+        <span className="text-zinc-500 text-sm">({product.rating.count} reviews)</span>
       </div>
 
       {/* Divider */}
@@ -69,7 +64,7 @@ const ProductInfo = () => {
 
       {/* Price */}
       <h2 style={{ marginTop: "1rem", marginBottom: "1rem" }} className="text-4xl font-bold text-blue-400">
-        $299.99
+        ${product.price.toFixed(2)}
       </h2>
 
       {/* Divider */}
@@ -83,12 +78,12 @@ const ProductInfo = () => {
       style={{ marginTop: "1rem" }}
         className="text-zinc-400 leading-5 text-md"
       >
-        Advanced smartwatch with health monitoring, GPS and water
-        resistance. Stay connected and track your fitness goals.
+        {product.description}
       </p>
 
       {/* Buttons */}
       <div
+        onClick={() => addToCart(product)}
         style={{ marginTop: "1.2rem" }}
         className="flex gap-5"
       >
@@ -116,10 +111,9 @@ const ProductInfo = () => {
       {/* Features */}
       <div
         style={{ marginTop: "1.2rem" }}
-        className="grid grid-cols-3 gap-5  "
+        className="grid grid-cols-3 gap-5 "
       >
         <FeatureCard
-        
           icon={<MdLocalShipping className="text-blue-400" />}
           title="Free Delivery"
           subtitle="On orders $50+"
@@ -139,29 +133,8 @@ const ProductInfo = () => {
       </div>
 
       {/* Navigation */}
-      <div
-        style={{ marginTop: "3rem" }}
-        className="grid grid-cols-2 gap-5"
-      >
-        <button
-          className="h-16 rounded-2xl bg-zinc-800 text-white
-          flex items-center justify-center gap-3
-          hover:bg-zinc-700 transition-all"
-        >
-          <IoChevronBack />
-          Previous
-        </button>
-
-        <button
-          className="h-16 rounded-2xl bg-[#C6FF00]
-          text-black font-semibold
-          flex items-center justify-center gap-3
-          hover:scale-[1.02] transition-all duration-300 active:scale-95"
-        >
-          Next
-          <IoChevronForward />
-        </button>
-      </div>
+ 
+      <ProductNavigation  product={product}   previousProduct={previousProduct} nextProduct={nextProduct}/>
     </div>
   );
 };
@@ -169,7 +142,7 @@ const ProductInfo = () => {
 const FeatureCard = ({ icon, title, subtitle }) => {
   return (
     <div
-      className="h-28 rounded-2xl border border-white/20
+      className="h-25 rounded-2xl border border-white/20
       flex flex-col items-center justify-center"
     >
       <div className="text-[#C6FF00] text-2xl">{icon}</div>
