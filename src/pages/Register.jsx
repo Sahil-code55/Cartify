@@ -5,6 +5,7 @@ import { IoMailOutline } from "react-icons/io5";
 import { IoLockClosedOutline } from "react-icons/io5";
 import { MdArrowForward } from "react-icons/md";
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useToast } from '../context/ToastContext';
 
 const Register = () => {
 
@@ -12,6 +13,7 @@ const Register = () => {
     mode:"onChange"
    });
       const navigate = useNavigate();
+      const { showToast } = useToast();
 
   const  onSubmit =(data)=>{
   // read existing user if any
@@ -32,7 +34,7 @@ const Register = () => {
 
   localStorage.setItem("users", JSON.stringify(users));
 
-    alert("Registration Successful!");
+  showToast("User created successfully 👤");
     navigate("/home");
 
   }
@@ -106,7 +108,7 @@ const Register = () => {
               },
             })}
           />
-         <p className="text-red-500 mt-1">
+         <p style={{marginRight:"13rem"}} className="text-red-500 mt-1">
             {errors.fullName?.message}
           </p>
         </div>
@@ -129,7 +131,7 @@ const Register = () => {
               },
             })}
           />
-            <p className="text-red-500 mt-1">
+            <p style={{marginRight:"13rem"}} className="text-red-500 mt-1">
             {errors.email?.message}
           </p>
         </div>
@@ -150,7 +152,7 @@ const Register = () => {
               },
             })}
           />
-           <p className="text-red-500 mt-1">
+           <p style={{marginRight:"13rem"}} className="text-red-500 mt-1">
             {errors.password?.message}
           </p>
         </div>
@@ -170,7 +172,7 @@ const Register = () => {
                 "Passwords do not match",
             })}
           />
-            <p className="text-red-500 mt-1">
+            <p style={{marginRight:"13rem"}} className="text-red-500 mt-1">
             {errors.confirmPassword?.message}
           </p>
         </div>

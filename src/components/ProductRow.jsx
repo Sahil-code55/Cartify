@@ -1,9 +1,11 @@
 import { FaShoppingBag } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
+import { useToast } from "../context/ToastContext";
 
 const ProductRow = ({ product }) => {
 
  const { addToCart } = useCart();
+ const { showToast } = useToast();
   return (
 
     <div className=" product-row flex items-center justify-between border border-zinc-200 rounded-3xl ">
@@ -31,7 +33,10 @@ const ProductRow = ({ product }) => {
       </div>
 
       <button
-        onClick={() => addToCart(product)}
+       
+        onClick={() => {
+        addToCart(product);
+         showToast("Added to cart 🛒"); }}
        className="h-12 w-12 rounded-xl bg-[#0051ff14] flex items-center flex-shrink-0 justify-center hover:bg-[#0037ad47] cursor-pointer active:scale-96 ">
 
         <FaShoppingBag className="text-[#3973f0]"/>

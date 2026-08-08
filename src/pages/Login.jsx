@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useToast } from '../context/ToastContext';
 const Login = () => {
      // Metrics Data
   const metrics = [
@@ -19,6 +20,7 @@ const navigate = useNavigate();
 const { login } = useContext(AuthContext);
 
   let {register , handleSubmit ,reset ,formState:{errors}} =useForm({mode:"onChange"});
+  const { showToast } = useToast();
 
   const onLoginSubmit =(data)=>{
   const usersData = JSON.parse(localStorage.getItem("users"))||[];
@@ -39,53 +41,13 @@ const { login } = useContext(AuthContext);
     console.error("Incorrect password.")
     return;
   }
-     console.log("login successfully !");
+    
     login(user);
+    showToast("Login successful 🔐");
     navigate("/home");
   }
    
-//     let arr =[...user , logUser]
-//     SetUser(arr)
-//     reset();
-//   }
 
-//  let {register,handleSubmit,reset,formState:{errors}}=useForm({
-//     mode:"onChange",
-//   defaultValues:updateUser,
-
-//  });
-
-//   console.log(errors);
-  
-   
-//     let formSubmit =(data)=>{
-//       const newUser ={
-//         id : Date.now(),
-//         ...data,
-//       }
-//     if(updateUser){
-//      setUser((prev)=>{
-//       return prev.map((val)=>{
-//          return val.id === updateUser.id ? {...newUser}: val;
-        
-//       })
-//      })
-//     }
-//       else{
-//       let arr = [...user ,newUser]
-//       setUser(arr)
-//       localStorage.setItem("users",JSON.stringify(arr));
-//     }
-//     reset();
-//     setToggle((prev)=>!prev)
-//     }
-
-
-
-
-
-
-//   let {user , setUser } = useContext(checkAuthContext);
 
   return (
 
@@ -101,16 +63,16 @@ const { login } = useContext(AuthContext);
           <svg className="h-8 w-16" width="240" height="160" viewBox="0 0 240 165" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="cartGradient" x1="0" y1="0" x2="240" y2="160" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2563EB"/>
-      <stop offset="100%" stop-color="#38BDF8"/>
+      <stop offset="0%" stopColor="#2563EB"/>
+      <stop offset="100%" stopColor="#38BDF8"/>
     </linearGradient>
   </defs>
 
   {/* Speed Line 1 (Middle Left) --> */}
-  <path d="M 15 50 H 85" stroke="url(#cartGradient)" stroke-width="16" stroke-linecap="round" />
+  <path d="M 15 50 H 85" stroke="url(#cartGradient)" strokeWidth="16" strokeLinecap="round" />
 
   {/* <!-- Speed Line 2 (Bottom Left) --> */}
-  <path d="M 40 80 H 115" stroke="url(#cartGradient)" stroke-width="16" stroke-linecap="round" />
+  <path d="M 40 80 H 115" stroke="url(#cartGradient)" strokeWidth="16" strokeLinecap="round" />
 
   {/* <!-- Main Cart Basket and Top Tail --> */}
   <path d="M 55 20 
@@ -123,7 +85,7 @@ const { login } = useContext(AuthContext);
            C 199 123 190 130 178 130 
            H 85 
            C 74 130 65 121 65 110" 
-        stroke="url(#cartGradient)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        stroke="url(#cartGradient)" strokeWidth="15" strokeLinecap="round" strokeLinejoin="round" fill="none" />
 
 
   {/* <!-- Wheels --> */}
@@ -177,78 +139,13 @@ const { login } = useContext(AuthContext);
   <div className=" flex items-center justify-center bg-[#0D0D0D]">
 
      
-    {/* <form 
-      onSubmit={handleSubmit(formSubmit)}
-      className=" w-100 rounded-xl flex flex-col items-start justify-start text-start gap-4 bg-black border-3 border-amber-100 py-5 px-3" >
 
-
-    <input
-    {...register("name" ,{
-      required : "name is required"
-    })}
-
-     className= "p-2  text-white border-1 border-amber-100 w-full outline-0 rounded-2xl " 
-     type="text"
-     placeholder=" Enter  name" 
-     />
-    { errors.name && <p className="text-red-700 text-start text-md">{errors.name.message}</p>}
-
-    <input
-    {...register("email"  ,{
-      required : "email is required",
-      pattern:{
-        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-        message:"please enter valid email"
-      }
-    })}
-
-     className= "p-2  text-white border-1 border-amber-100 w-full outline-0 rounded-2xl " 
-     type="email"
-      placeholder=" Enter Email" 
-      />
-    {   errors.email && < p className="text-red-700 text-start text-md">{errors.email.message}</p>}
-
-    <input
-    {...register("mobile" ,{
-      required : "name is required",
-      minLength:{
-        value: 10,
-        message:"minimum 10 digit required"
-      },
-        maxLength:{
-        value: 10,
-        message:"maximum 10 digit required"
-      }
-    })}
-
-     className= "p-2  text-white border-1 border-amber-100 w-full outline-0 rounded-2xl " 
-     type="number"
-      placeholder=" Enter Mobile number"
-       />
-      {  errors.mobile && <p className="text-red-700 text-start text-md">{errors.mobile.message}</p>}
-
-    <input
-    {...register("Image" ,{
-      required : "name is required"
-    })}
-
-     className= "p-2 text-white  border-1 border-amber-100 w-full outline-0 rounded-2xl "
-      type="url" 
-      placeholder=" Enter Image Url"
-       />
-     {  errors.Image &&  <p className="text-red-700 text-start text-md">{errors.Image.message}</p>}  
-
-    <button 
-    type="submit"
-     className=" bg-blue-500 rounded-4xl py-2 w-full text-white"
-     >Add User</button>
-      </form> */}
 
 
    <form 
    onSubmit={handleSubmit(onLoginSubmit)}
    style={{paddingTop:"0.98rem",paddingBottom:"0.98rem",paddingLeft:"1.5rem",paddingRight:"1.5rem"}}
-   className=" w-110 rounded-3xl flex flex-col gap-7 border-2 border-[#1D1D1D]  bg-[#111111]" >
+   className=" w-110 rounded-3xl flex flex-col  gap-7 border-2 border-[#1D1D1D]  bg-[#111111]" >
 
     {/* top text */}
     <div className="top">
@@ -277,7 +174,7 @@ const { login } = useContext(AuthContext);
               },
             })}
           />
-            <p className="text-red-500 mt-1">
+            <p  style={{marginRight:"13rem"}}className="text-red-500   mt-1">
             {errors.email?.message}
           </p>
         </div>
@@ -295,7 +192,7 @@ const { login } = useContext(AuthContext);
             
             })}
           />
-           <p className="text-red-500 mt-1">
+           <p style={{marginRight:"13rem"}} className="text-red-500   mt-1">
             {errors.password?.message}
           </p>
         </div>

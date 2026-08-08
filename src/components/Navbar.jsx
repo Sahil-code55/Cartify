@@ -5,6 +5,7 @@ import { MdLogout } from "react-icons/md";
 import {useContext} from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
+import { useToast } from '../context/ToastContext';
 
 
 
@@ -13,7 +14,7 @@ import { useCart } from "../context/CartContext";
   const navigate = useNavigate()
   
   const { user ,logout } = useContext(AuthContext);
-
+const { showToast } = useToast();
   
 
 
@@ -141,6 +142,7 @@ import { useCart } from "../context/CartContext";
 
       <div className=" nav-logout  h-10 w-10 text-white flex items-center justify-center  rounded-xl text-xl cursor-pointer  ">  <button onClick={()=>{
         if(confirm("Are you sure you want to Logout")){
+          showToast("Logged out successfully 🚪");
         logout()}
       }}><MdLogout className="cursor-pointer hover:text-[#F87171] active:scale-10" /> </button>  </div>
        

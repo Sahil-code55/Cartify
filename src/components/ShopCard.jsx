@@ -3,8 +3,10 @@ import { FaStar, FaCartPlus } from "react-icons/fa";
 import { useCart } from '../context/CartContext';
 import { div } from 'framer-motion/client';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '../context/ToastContext';
 
 const ShopCard = ({ product}) => {
+  const { showToast } = useToast();
     if (!product) return null;
 
 
@@ -86,7 +88,10 @@ const ShopCard = ({ product}) => {
        
           {!cartItem ? (
   <button
-    onClick={() => addToCart(product)}
+   onClick={() => {
+  addToCart(product);
+  showToast("Added to cart 🛒");
+}}
     className="flex items-center gap-2 rounded-full bg-[#38BDF8] font-semibold text-black transition-all duration-300 hover:scale-105 active:scale-95"
     style={{ padding: "0.25rem 1rem" }}
   >

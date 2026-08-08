@@ -3,13 +3,18 @@ import { Plus } from 'lucide-react';
 import { Minus } from 'lucide-react';
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useCart } from '../context/CartContext';
+import { useToast } from '../context/ToastContext';
 
 const CartCard = () => {
    
+const { cart, deleteProduct, totalAmount, increaseQuantity, decreaseQuantity } = useCart();
+const { showToast } = useToast();
     
+const handleDelete = (productId) => {
+  deleteProduct(productId);
+  showToast("Removed from cart 🗑️");
+};
 
-    const { cart, deleteProduct, totalAmount, increaseQuantity, decreaseQuantity } = useCart();
-    
 
   return (
 
@@ -66,7 +71,7 @@ const CartCard = () => {
                 </div>
 
                 <div 
-                onClick={() => deleteProduct(product.id)}
+                onClick={() =>handleDelete(product.id)}
                  className=" h-full w-1/6  flex items-center justify-center">
                     <FaRegTrashAlt className="text-red-700 text-md cursor-pointer active:scale-90"/>
                 </div>

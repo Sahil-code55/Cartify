@@ -1,17 +1,16 @@
-
-
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { FiHeart, FiShoppingCart } from "react-icons/fi";
 import {MdLocalShipping,MdOutlineSecurity,MdOutlineReplay,} from "react-icons/md";
-
 import { useCart } from "../../context/CartContext";
 import ProductNavigation from "./ProductNavigation";
+import { useToast } from "../../context/ToastContext";
 
 
 
 const ProductInfo = ( { product , nextProduct ,previousProduct}) => {
 const { addToCart } = useCart();
+const { showToast } = useToast();
 
   return (
     <div className="w-[55%] flex flex-col ">
@@ -83,11 +82,15 @@ const { addToCart } = useCart();
 
       {/* Buttons */}
       <div
-        onClick={() => addToCart(product)}
+
         style={{ marginTop: "1.2rem" }}
         className="flex gap-5"
       >
         <button
+               onClick={() => {
+  addToCart(product);
+  showToast("Added to cart 🛒");
+}}
           className="login-btn flex-1 h-13 rounded-2xl  text-black
           font-semibold text-xl flex items-center justify-center gap-3
           hover:scale-[1.02] transition-all duration-300 active:scale-95 

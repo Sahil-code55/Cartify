@@ -7,12 +7,20 @@ import { Minus } from 'lucide-react';
 import { FaRegTrashAlt } from "react-icons/fa";
 import EmptyCardUI from "./EmptyCardUI";
 import CartCard from "./CartCard";
+import { useToast } from "../context/ToastContext";
 
 
 const CartDrawer = () => {
   const { isCartOpen, closeCart, cart ,totalAmount, clearCart } = useCart();
-
+  const { showToast } = useToast();
   const navigate = useNavigate();
+
+  const handleClearCart = () => {
+  if (cart.length === 0) return;
+
+  clearCart();
+  showToast("Cart cleared 🛒");
+};
 
 
   return (
@@ -73,7 +81,7 @@ const CartDrawer = () => {
         hover:scale-103 active:scale-100 transition-all duration-300"
         > <span className="text-lg">Checkout</span> <IoMdArrowForward className="text-xl" /> </button>
     
-    <p onClick={clearCart} style={{marginTop:"0.7rem"}} className="text-zinc-500 text-sm text-center cursor-pointer hover:text-[#F85433] transition-colors duration-300 active:scale-95">
+    <p  onClick={handleClearCart} style={{marginTop:"0.7rem"}} className="text-zinc-500 text-sm text-center cursor-pointer hover:text-[#F85433] transition-colors duration-300 active:scale-95">
       Clear Cart
     </p>
 

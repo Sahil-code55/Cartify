@@ -6,6 +6,8 @@ import App from './App.jsx'
 import { ShopProductContextProvider } from './context/ProductContext.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 import { CartProvider } from './context/CartContext.jsx';
+import { ToastProvider } from './context/ToastContext.jsx';
+
 
 
 createRoot(document.getElementById('root')).render(
@@ -13,9 +15,11 @@ createRoot(document.getElementById('root')).render(
 <ShopProductContextProvider>
   <AuthProvider>
     <CartProvider>
+          <ToastProvider>
       <BrowserRouter>
           <App />
       </BrowserRouter>
+       </ToastProvider>
     </CartProvider>
   </AuthProvider>
 </ShopProductContextProvider>
