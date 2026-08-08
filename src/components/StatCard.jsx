@@ -1,25 +1,55 @@
-import React from 'react'
-import { FaCartShopping, FaStar,FaTags,FaIndianRupeeSign, FaBox,} from "react-icons/fa6"; 
+import React from "react";
 
-const StatCard = () => {
+const StatCard = ({
+  icon,
+  value,
+  title,
+  subtitle,
+  iconBg,
+  iconColor,
+}) => {
+  
   return (
-   <div className="StatCard flex items-start gap-5 rounded-3xl border border-white/20 bg-white/5 h-40   ">
-    {/* icon */}
-  <div className="h-13 w-13 rounded-2xl bg-lime-400/10 flex items-center justify-center  backdrop-blur-md hover:border-lime-400/30 transition-all duration-300">
+    <div
+      style={{ padding: "1.9rem" }}
+      className="flex h-40 items-start gap-5 rounded-3xl border border-white/20
+      bg-[#111111] transition-all duration-300 hover:border-white/40"
+    >
+      {/* Icon */}
+      <div
+        style={{ backgroundColor: iconBg }}
+        className="flex h-16 w-16 items-center justify-center rounded-2xl"
+      >
+        <span
+          style={{ color: iconColor }}
+          className="text-3xl"
+        >
+          {icon}
+        </span>
+      </div>
 
-    <FaBox className="text-2xl text-lime-400" />
-  </div>
+      {/* Content */}
+      <div className="flex flex-col">
+        <h2 className="text-4xl font-bold text-white">
+          {value}
+        </h2>
 
-  {/* Content */}
-  <div className="flex flex-col">
-    <h2 className="text-3xl text-white font-bold leading-none">0</h2>
-    <p className="text-xl font-medium mt-1">Cart Items</p>
-    <span className="text-zinc-500 text-base mt-1">
-      In your bag
-    </span>
-  </div>
-</div>
-  )
-}
+        <p
+          style={{ marginTop: "4px" }}
+          className="text-xl font-medium text-zinc-300"
+        >
+          {title}
+        </p>
 
-export default StatCard
+        <span
+          style={{ marginTop: "6px" }}
+          className="text-base text-zinc-500"
+        >
+          {subtitle}
+        </span>
+      </div>
+    </div>
+  );
+};
+
+export default StatCard;

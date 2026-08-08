@@ -17,7 +17,7 @@ const Stats = () => {
   },
   {
     title: "Top Products",
-    value: 5,
+    value: 6,
     subtitle: "Highly rated",
     color: "yellow",
   },

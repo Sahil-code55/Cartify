@@ -176,9 +176,23 @@ button, input, textarea {
    padding: 3px
   
 }
+
+
 .cart-logo:hover{
      border: 1.2px solid #3c92bb;
 }
+
+.nav-logout{
+   border: 1.5px solid rgb(80, 76, 76);
+    padding: 3px
+}
+
+.nav-logout:hover{
+     border: 1.2px solid rgb(221, 70, 70);
+     background-color: #ef444460;
+}
+
+
 
 .navbar-links .nav-link-btn {
   background: none;

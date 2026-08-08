@@ -13,8 +13,20 @@ import { useCart } from "../context/CartContext";
   const navigate = useNavigate()
   
   const { user ,logout } = useContext(AuthContext);
-  const { openCart } = useCart();
+
   
+
+
+    // Get cart data
+  const { cart, openCart } = useCart();
+
+  // Calculate total quantity
+  const cartCount = cart.reduce(
+    (total, item) => total + (item.quantity || 1),
+    0
+  );
+
+
 
 
   useEffect(()=>{
@@ -100,12 +112,37 @@ import { useCart } from "../context/CartContext";
        <h1 className="text-white"> {user?.fullName}</h1>
       </div>
 
-      <div className="cart-logo h-10 w-10 text-white flex items-center justify-center rounded-xl text-xl cursor-pointer "> <button onClick={openCart}><IoCartOutline className="cursor-pointer active:scale-10" /></button> </div>
 
-      <div className="cart-logo h-10 w-10 text-white flex items-center justify-center border-0 rounded-xl text-xl cursor-pointer ">  <button onClick={()=>{
+
+      <div
+       className="cart-logo h-10 w-10 text-white flex items-center justify-center rounded-xl text-xl cursor-pointer "> <button 
+       onClick={openCart}>
+        <IoCartOutline 
+       className="cursor-pointer active:scale-10" /></button> </div>
+
+            {/* Cart Badge */}
+            {cartCount > 0 && (
+              <span
+                className="
+                  absolute right-43 top-3
+                  min-w-5 h-5
+                  px-1
+                  rounded-full
+                  bg-blue-400
+                  text-black
+                  text-[11px]
+                  font-bold
+                  flex items-center justify-center
+                "
+              >
+                {cartCount}
+              </span>
+            )}
+
+      <div className=" nav-logout  h-10 w-10 text-white flex items-center justify-center  rounded-xl text-xl cursor-pointer  ">  <button onClick={()=>{
         if(confirm("Are you sure you want to Logout")){
         logout()}
-      }}><MdLogout className="cursor-pointer active:scale-10" /> </button>  </div>
+      }}><MdLogout className="cursor-pointer hover:text-[#F87171] active:scale-10" /> </button>  </div>
        
       </div>
 

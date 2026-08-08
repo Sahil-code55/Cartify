@@ -22,6 +22,12 @@ let filteredProducts = shopProductData.filter((product) =>{
   const matchesCategory = selectedCategory === "All Categories" ||
     product.category.toLowerCase() === selectedCategory.toLowerCase();
 
+// const matchesCategory =
+//   selectedCategory === "All Categories" ||
+//   (
+//     typeof selectedCategory === "string" &&
+//     product.category.toLowerCase() === selectedCategory.toLowerCase()
+//   );
 
     return matchesSearch && matchesCategory ;
 

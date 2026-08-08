@@ -8,25 +8,25 @@ export const categories = [
   {
     id: 1,
     title: "Electronics",
-    items: 17,
+    category: "electronics",
     icon: <FaLaptop />,
   },
   {
     id: 2,
-    title: "Female Clothing",
-    items: 2,
+    title: "Women's Clothing",
+    category: "women's clothing",
     icon: <BiFemale />,
   },
   {
     id: 3,
-    title: "Male Clothing",
-    items: 3,
+    title: "Men's Clothing",
+    category: "men's clothing",
     icon: < FaMale/>,
   },
   {
     id: 4,
     title: "Jewelrys",
-    items: 14,
+    category: "jewelery",
     icon: <RiJewelryFill />,
   }
 
