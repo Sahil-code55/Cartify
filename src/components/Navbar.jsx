@@ -105,40 +105,42 @@ const { showToast } = useToast();
      
       <div className="navbar-actions   flex items-center justify-self-end gap-4">
 
-      <div 
+       <div 
       className="user   flex items-center justify-center gap-3 rounded-2xl  ">
         <div className="userlogo h-7 w-7  flex items-center justify-center border-0 rounded-sm " >
-           <h1 className="text-md text-white"> {user?.fullName.charAt(0).toUpperCase()} </h1> </div>
+           <h1 className="text-md text-white"> {user?.fullName ? user.fullName.charAt(0).toUpperCase() : "U"} </h1> </div>
            
-       <h1 className="text-white"> {user?.fullName}</h1>
+       <h1 className="text-white"> {user?.fullName || "User"}</h1>
       </div>
 
 
 
       <div
-       className="cart-logo h-10 w-10 text-white flex items-center justify-center rounded-xl text-xl cursor-pointer "> <button 
-       onClick={openCart}>
-        <IoCartOutline 
-       className="cursor-pointer active:scale-10" /></button> </div>
-
-            {/* Cart Badge */}
-            {cartCount > 0 && (
-              <span
-                className="
-                  absolute right-43 top-3
-                  min-w-5 h-5
-                  px-1
-                  rounded-full
-                  bg-blue-400
-                  text-black
-                  text-[11px]
-                  font-bold
-                  flex items-center justify-center
-                "
-              >
-                {cartCount}
-              </span>
-            )}
+       className="cart-logo h-10 w-10 text-white flex items-center justify-center rounded-xl text-xl cursor-pointer relative"> 
+        <button 
+          onClick={openCart}>
+          <IoCartOutline 
+            className="cursor-pointer active:scale-10" />
+        </button> 
+        {/* Cart Badge */}
+        {cartCount > 0 && (
+          <span
+            className="
+              absolute -top-1.5 -right-1.5
+              min-w-5 h-5
+              px-1
+              rounded-full
+              bg-blue-400
+              text-black
+              text-[11px]
+              font-bold
+              flex items-center justify-center
+            "
+          >
+            {cartCount}
+          </span>
+        )}
+      </div>
 
       <div className=" nav-logout  h-10 w-10 text-white flex items-center justify-center  rounded-xl text-xl cursor-pointer  ">  <button onClick={()=>{
         if(confirm("Are you sure you want to Logout")){

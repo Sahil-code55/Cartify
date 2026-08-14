@@ -40,7 +40,7 @@ const { showToast } = useToast();
           <FaStar
             key={index}
             className={`text-[15px] ${
-              index < 4 ? "text-yellow-400" : "text-zinc-600"
+              index < Math.floor(product.rating.rate) ? "text-yellow-400" : "text-zinc-600"
             }`}
           />
         ))}

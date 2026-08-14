@@ -42,7 +42,7 @@ const handleDelete = (productId) => {
             {/* card content */}
             <div style={{padding:"0.05rem"}} className="min-h-22 w-67   flex flex-col justify-center break-words ">
                 <h1 className="text-white fixed-content font-semibold">{product.title}</h1>
-                <p className="text-white text-xl">${totalAmount.toFixed(2)}</p>
+                <p className="text-white text-xl">${(product.price * product.quantity).toFixed(2)}</p>
                 <span className="text-zinc-500 text-xs">${product.price.toFixed(2)} each</span>
             </div>
             </div>

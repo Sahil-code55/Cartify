@@ -2,7 +2,7 @@ import { FaArrowRight, FaStar } from "react-icons/fa";
 import ProductRow from "./ProductRow";
 import { useNavigate } from "react-router-dom";
 
-const ProductList = ({ title, products }) => {
+const ProductList = ({ title, products, icon }) => {
 
   const navigate = useNavigate()
   return (
@@ -13,7 +13,9 @@ const ProductList = ({ title, products }) => {
       <div className="top-product-header flex justify-between items-center ">
         <div className="flex items-center gap-3">
 
-          <FaStar className="text-yellow-500 text-xl"/>
+          <div className="text-yellow-500 text-xl flex items-center justify-center">
+            {icon || <FaStar />}
+          </div>
 
           <h2 className="text-2xl font-bold">
             {title}

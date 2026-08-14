@@ -16,7 +16,8 @@ const ProductNavigation = ({ product , nextProduct ,previousProduct}) => {
   onClick={() => navigate(`/product-details/${previousProduct.id}`)}
           className="h-13 rounded-2xl bg-zinc-800 text-white
           flex items-center justify-center gap-3
-          hover:bg-zinc-700 transition-all text-xl hover:scale-103 active:scale-100"
+          hover:bg-zinc-700 transition-all text-xl hover:scale-103 active:scale-100
+          disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-zinc-800"
         >
           <IoChevronBack />
           Previous
@@ -31,7 +32,8 @@ const ProductNavigation = ({ product , nextProduct ,previousProduct}) => {
           className="login-btn h-13 rounded-2xl 
           text-black font-semibold text-xl
           flex items-center justify-center gap-2
-          hover:scale-[1.02] transition-all duration-300 active:scale-95 hover:shadow-[0_10px_30px_rgba(0,191,255,0.3)]"
+          hover:scale-[1.02] transition-all duration-300 active:scale-95 hover:shadow-[0_10px_30px_rgba(0,191,255,0.3)]
+          disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
         >
           Next
           <IoChevronForward />

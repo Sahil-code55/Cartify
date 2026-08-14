@@ -136,7 +136,10 @@ const About = () => {
            </svg>
             
           </motion.div>
-          <h1 style={{marginBottom:"1rem"}} className="tracking-normal flex  text-3xl text-white font-medium tracking-wide"><h2 style={{marginRight:"0.47rem"}}>About</h2> Cart<span >ify</span></h1>
+          <h1 style={{marginBottom:"1rem"}} 
+          className="tracking-normal flex items-center text-3xl text-white font-medium tracking-wide">
+            <strong style={{marginRight:"0.47rem", fontWeight:"500"}} 
+            className="text-white">About</strong> Cart<span >ify</span></h1>
         
           <p className="text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed text-center">
             Cartify is a next-generation e-commerce platform built to make online shopping fast, fair, and enjoyable — for everyone.
@@ -243,12 +246,13 @@ const About = () => {
             Explore thousands of products at unbeatable prices.
           </p>
           <motion.button 
+            onClick={()=> navigate("/shop")}
             whileHover={{ scale: 1.05, boxShadow: 'var(--shadow-primary)' }}
             whileTap={{ scale: 0.98 }}
            
             className="about-btn inline-flex items-center gap-2 px-8 py-4 bg-blue-500 from-primary to-primary-light text-text-inverse font-bold rounded-radius-full shadow-md hover:from-primary-dark hover:to-primary transition-all duration-300 cursor-pointer"
           >
-            <span onClick={()=> navigate("/shop")} >Browse Products</span>
+            <span>Browse Products</span>
             <ArrowRight className="w-5 h-5" />
           </motion.button>
         </motion.div>

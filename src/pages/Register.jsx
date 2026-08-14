@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form';
 import { IoPersonOutline } from "react-icons/io5";
 import { IoMailOutline } from "react-icons/io5";
@@ -6,6 +6,7 @@ import { IoLockClosedOutline } from "react-icons/io5";
 import { MdArrowForward } from "react-icons/md";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
+import { AuthContext } from '../context/AuthContext';
 
 const Register = () => {
 
@@ -14,6 +15,7 @@ const Register = () => {
    });
       const navigate = useNavigate();
       const { showToast } = useToast();
+      const { login } = useContext(AuthContext);
 
   const  onSubmit =(data)=>{
   // read existing user if any
@@ -23,7 +25,7 @@ const Register = () => {
   const userExists = users.find((user)=>user.email === data.email);
 
   if(userExists){
-      alert("Email already exists.");
+      showToast("Email already registered! ❌", "error");
       return;
   }
 
@@ -34,6 +36,7 @@ const Register = () => {
 
   localStorage.setItem("users", JSON.stringify(users));
 
+  login(newUser);
   showToast("User created successfully 👤");
     navigate("/home");
 
@@ -182,7 +185,7 @@ const Register = () => {
     className="login-btn relative flex items-center justify-center gap-2 w-full h-12 text-white text-xl rounded-2xl transition-transform duration-200 ease-linear active:translate-y-[-1px] active:cursor-progress hover:-translate-y-[1px] bg-gradient-to-br from-[#2563EB] to-[#38BDF8] before:absolute before:top-1 before:left-0 before:w-full before:h-full before:-z-10 before:rounded-lg before:bg-gradient-to-br before:from-[#2563EB] before:to-[#38BDF8] before:blur-md before:opacity-40
     ">Create account <MdArrowForward/></button>
 
-     <p className="text-gray-500 flex items-center justify-center gap-1 text-center">Don't have an account? 
+     <p className="text-gray-500 flex items-center justify-center gap-1 text-center">Already have an account? 
      <span className="login-left-middle-h2 "> <NavLink to="/">Log in</NavLink></span>
        </p>
      

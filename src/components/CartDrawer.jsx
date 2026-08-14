@@ -17,10 +17,25 @@ const CartDrawer = () => {
 
   const handleClearCart = () => {
   if (cart.length === 0) return;
-
   clearCart();
   showToast("Cart cleared 🛒");
 };
+
+const handleCheckOut =()=>{
+   if (cart.length === 0){
+    showToast("Add product first")
+   }
+   else{
+    showToast("Order Successfully")
+  
+    
+    clearCart();
+
+        closeCart();
+  
+
+   }
+}
 
 
   return (
@@ -76,6 +91,10 @@ const CartDrawer = () => {
         </div>
        
         <button
+        onClick={() => {
+          handleCheckOut()
+      
+        }}
         style={{marginTop:"1.25rem", padding:"0.75rem 1rem"}}
         className="cart-drawer w-full  text-black font-medium rounded-2xl flex items-center justify-center cursor-pointer gap-1
         hover:scale-103 active:scale-100 transition-all duration-300"

@@ -24,7 +24,6 @@ const Shop = () => {
 
       <ShopProductFilter/>
       <ShopProductGrid/>
-      <ShopCard/>
       
     </div>
   )

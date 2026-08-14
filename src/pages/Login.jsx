@@ -26,19 +26,19 @@ const { login } = useContext(AuthContext);
   const usersData = JSON.parse(localStorage.getItem("users"))||[];
 
   if(usersData.length === 0){
-    alert("No account found .please register first ")
-    return
+    showToast("No account found. Please register first. ❌", "error");
+    return;
   }
    // check any user present in localstorage
   const user = usersData.find((user)=> user.email === data.email)
 
   if (!user) {
-    console.error("Email is not registered.");
+    showToast("Email is not registered ❌", "error");
     return;
 }
 
   if( user.password !== data.password ){
-    console.error("Incorrect password.")
+    showToast("Incorrect password ❌", "error");
     return;
   }
     

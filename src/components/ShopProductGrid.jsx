@@ -1,4 +1,4 @@
-// import { products } from "../data/products";
+
 import { useContext } from "react";
 import ShopCard from "./ShopCard";
 import { ShopProductContext } from "../context/ProductContext";
